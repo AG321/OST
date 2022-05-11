@@ -5,7 +5,7 @@ from network.Net import Net
 class OutputWriter:
     def __init__(self, net):
         self.net = net
-
+    
     def solution(self, solution: Chromosome, file_name: str):
         with open(file_name, "w+") as out_file:
             links = len(self.net.links)

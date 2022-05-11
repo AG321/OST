@@ -5,7 +5,7 @@ from typing import List
 import random
 import copy
 from time import time
-import algorithms
+# import algorithms
 
 
 class EvolutionaryAlgorithm:
@@ -165,6 +165,7 @@ class EvolutionaryAlgorithm:
             return True
 
         return False
+
 
     def crossover_happened(self) -> bool:
         return random.random() < self.crossover_probability
