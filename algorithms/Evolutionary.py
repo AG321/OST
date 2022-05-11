@@ -105,12 +105,15 @@ class EvolutionaryAlgorithm:
         padding = [copy.deepcopy(best_chromosomes[i]) for i in range(self.population_padding)]
         return best_chromosomes + padding
 
+    # bierzemy rodziców, i alokujemy dzieci
+    # 
     def corssover(self, parents):
         father = parents[0]
         mother = parents[1]
         brother = Chromosome({})
         sister = Chromosome({})
 
+        # 
         number_of_genes = father.number_of_genes
 
         for gene_number in range(number_of_genes):

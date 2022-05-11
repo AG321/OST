@@ -30,7 +30,6 @@ def compute(net: Net, problem: str) -> Chromosome:
 
 # function .get_chromosomes_with_one_gene(demand) returns list of possible chromoseomes for one demand
 # all_combinations return list of all possible chromosomes for all demands
-# 
 def get_all_possible_chromosomes(demands: List[Demand]) -> List[Chromosome]:
     all_combinations_all_demands = [ForBothAlgorithms.get_chromosomes_with_one_gene(demand) for demand in demands]
     indexes = [range(len(combination)) for combination in all_combinations_all_demands]

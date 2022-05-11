@@ -3,7 +3,8 @@ import math
 import random
 from pprint import pformat
 
-
+# chromosome zawiera geny, które
+# genes represent internal structure of a solution
 class Chromosome(object):
     def __init__(self, allocation_pattern: dict):
         self.allocation_pattern = allocation_pattern
@@ -12,8 +13,10 @@ class Chromosome(object):
         self.number_of_genes = 0
         self.z = float('inf')
 
+    #keyworld argument 
     def add_flow_values(self, new_mappings: dict):
         self.allocation_pattern = {**self.allocation_pattern, **new_mappings}
+        print(self.allocation_pattern)
 
     def get_gene(self, demand_id):
         return {key: value for key, value in self.allocation_pattern.items() if key[0] == demand_id}
