@@ -19,14 +19,11 @@ if __name__ == "__main__":
 
     solution = None
     net_parser = InputReader()
-    #net = net_parser.parse_network(args.plik)
-    net = net_parser.parse_network("data/net4.txt")
+    net = net_parser.parse_network(args.plik)
     output_writer = OutputWriter(net=net)
-    #if args.algorytm == "EA":
-    if 1:
+    if args.algorytm == "EA":
         EA = EvolutionaryAlgorithm(
-            #problem=args.problem,
-            problem="DDAP",
+            problem=args.problem,
             net=net,
             seed=15,
             number_of_chromosomes=1000,
@@ -39,12 +36,10 @@ if __name__ == "__main__":
             mutation_probability=0.03
         )
         solution = EA.compute()
-        #output_writer.history(EA.history, file_name=args.historia)
-        output_writer.history(EA.history, file_name="historia.txt")
+        output_writer.history(EA.history, file_name=args.historia)
     else:
         solution = BruteForce.compute(net, problem=args.problem)
 
     print(f"\nRozwiazanie koncowe:\n{solution}\n")
-    #output_writer.solution(solution=solution, file_name=args.wynik)
-    output_writer.solution(solution=solution, file_name="wynik.txt")
+    output_writer.solution(solution=solution, file_name=args.wynik)
 
