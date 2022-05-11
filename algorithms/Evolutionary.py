@@ -5,7 +5,6 @@ from typing import List
 import random
 import copy
 from time import time
-# import algorithms
 
 
 class EvolutionaryAlgorithm:
@@ -46,7 +45,6 @@ class EvolutionaryAlgorithm:
         self.population_padding = number_of_chromosomes - self.number_of_best_chromosomes
 
     def compute(self) -> Chromosome:
-        # choose starting population
         population = self.get_init_population()
         final_solution = Chromosome({})
         self.initial_time = time()
@@ -55,12 +53,11 @@ class EvolutionaryAlgorithm:
             self.generation += 1
             best_chromosome_in_generation = Chromosome({})
 
-            # calculate cost function for current generation
+            # wyliczanie kosztu funkcji
             for chromosome in population:
                 chromosome.calculate_links_for_problem(self.net, self.problem)
                 if chromosome.calculate_z(self.net, self.problem) < best_chromosome_in_generation.z:
-                    best_chromosome_in_generation = copy.deepcopy(
-                        chromosome)
+                    best_chromosome_in_generation = copy.deepcopy(chromosome) # zapis najnizszej wartosci funkcji kosztu
 
             self.history.append(best_chromosome_in_generation)
 
@@ -72,8 +69,7 @@ class EvolutionaryAlgorithm:
             else:
                 self.without_progress += 1
 
-            # eliminate weakest chromosomes
-            population = self.fittest_selector(population)
+            population = self.fittest_selector(population) # odrzucenie najgorszego chromosomu
 
             # crossover
             crossed_population = []
@@ -85,17 +81,17 @@ class EvolutionaryAlgorithm:
 
             population += crossed_population
 
-            # mutation
+            # mutacja
             for chromosome in population:
-                if self.mutation_happened():  # chromosome mutation
+                if self.mutation_happened():  # mutacja chromosomu
                     for i in range(chromosome.number_of_genes):
-                        if self.mutation_happened():  # gene mutation
+                        if self.mutation_happened():  # mutacja genu
                             chromosome.mutate_gene(i + 1)
                             self.mutation += 1
 
         print(f"Rozwiazanie znaleziono w czasie: {round(time() - self.initial_time, 2)} s.")
 
-        # calculate link values for both problems to save full information in output files
+        # zapis na potrzeby wyniku
         for solution in self.history:
             solution.calculate_links(self.net)
 
@@ -165,7 +161,6 @@ class EvolutionaryAlgorithm:
             return True
 
         return False
-
 
     def crossover_happened(self) -> bool:
         return random.random() < self.crossover_probability

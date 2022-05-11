@@ -6,7 +6,7 @@ from typing import List
 # funcion get one demand and return list of chromosomes
 # volume it take range of demand ex. rang(0,4)
 # volume_for_path makes array in size of get number_of_paths, each elements is volume eg. [range(0, 4), range(0, 4), range(0, 4)]
-# volume_split is result of function product, which allows to iterate by tuple
+# volume_split  is result of function product, which allows to iterate by tuple
 # volume_split eg. [(0, 0, 3), (0, 1, 2), (0, 2, 1), (0, 3, 0), (1, 0, 2), (1, 1, 1), (1, 2, 0), (2, 0, 1), (2, 1, 0), (3, 0, 0)]
 # next uses build_gene
 # build Chromosome for each combination, uses allocation_pattern
