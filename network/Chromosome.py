@@ -13,17 +13,20 @@ class Chromosome(object):
         self.number_of_genes = 0
         self.z = float('inf')
 
-    #keyworld argument 
+    # keyworld argument, łączy dwa słowniki -> dodaje nowy słownik na koniec
+    # allocation pattern w chromosomie
     def add_flow_values(self, new_mappings: dict):
         self.allocation_pattern = {**self.allocation_pattern, **new_mappings}
-        print(self.allocation_pattern)
-
+    
+    # zwracaa zawrtość słownika, allocation pattern, jeżeli dana alokacja jest dla tego demanda
     def get_gene(self, demand_id):
         return {key: value for key, value in self.allocation_pattern.items() if key[0] == demand_id}
 
+    # dodaje nowe mappowanie gen do allocation pattern
     def add_gene(self, gene: dict):
         self.add_flow_values(gene)
         self.number_of_genes += 1
+
 
     def mutate_gene(self, gene_number):
         gene = self.get_gene(gene_number)
@@ -32,6 +35,7 @@ class Chromosome(object):
             if self.allocation_pattern[flows[0]] > 0:
                 self.allocation_pattern[flows[0]] -= 1
                 self.allocation_pattern[flows[1]] += 1
+
 
     def calculate_links_for_problem(self, net: Net, problem: str):
         links = net.links
