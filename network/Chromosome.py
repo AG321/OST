@@ -24,7 +24,7 @@ class Chromosome(object):
 
     def mutate_gene(self, gene_number):
         gene = self.get_gene(gene_number)
-        if len(gene) > 1:  # we cant mutate gene with only one value
+        if len(gene) > 1:  # jednowartosciowe geny nie moga mutowac
             flows = random.sample(list(gene), 2)
             if self.allocation_pattern[flows[0]] > 0:
                 self.allocation_pattern[flows[0]] -= 1
