@@ -3,7 +3,6 @@ import math
 import random
 from pprint import pformat
 
-# allocation pattern 
 
 class Chromosome(object):
     def __init__(self, allocation_pattern: dict):
